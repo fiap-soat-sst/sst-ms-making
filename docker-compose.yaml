@@ -3,7 +3,7 @@ services:
         build: .
         restart: on-failure
         ports:
-            - 3000:3000
+            - ${PORT}:${PORT}
         depends_on:
             mysql_self:
                 condition: service_healthy
@@ -27,7 +27,7 @@ services:
         build: .
         restart: on-failure
         ports:
-            - 3000:3000
+            - ${PORT}:${PORT}
         depends_on:
             mysql_self:
                 condition: service_healthy
@@ -50,13 +50,14 @@ services:
     mysql_self:
         image: mysql:5.7
         restart: on-failure
-        ports:
-            - 3306:3306
         environment:
             MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
             MYSQL_DATABASE: ${DB_DATABASE}
             MYSQL_USER: ${DB_USERNAME}
             MYSQL_PASSWORD: ${DB_PASSWORD}
+            DB_PORT: ${DB_PORT}
+        ports:
+            - ${DB_PORT}:${DB_PORT}
         networks:
             - backend
         volumes:
