@@ -1,16 +1,21 @@
 {
-  "name": "sst-ms-making",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "@types/express": "^5.0.0",
-    "express": "^4.21.1",
-    "typeorm": "^0.3.20"
-  }
+    "name": "sst-ms-making",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "build": "npx tsc",
+        "start": "node ./dist/src/External/Api/Server.js",
+        "test": "vitest --config vitest.config.mts --run",
+        "test:integration": "vitest --config vitest.config.mts --run",
+        "test:unit": "vitest --config vitest.config.mts --run",
+        "test:coverage": "vitest --config vitest.coverage.config.mts --run"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "@types/express": "^5.0.0",
+        "express": "^4.21.1",
+        "typeorm": "^0.3.20"
+    }
 }
