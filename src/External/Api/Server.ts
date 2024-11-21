@@ -15,7 +15,3 @@ app.listen(port, () => {
 app.get('/', (req, res) => {
     res.redirect('/public/docs')
 })
-
-app.get('/ping', (req, res) => {
-    res.send('pong')
-})
