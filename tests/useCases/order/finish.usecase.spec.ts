@@ -1,15 +1,15 @@
-import { describe, it, expect, vi } from 'vitest'
-import FinishOrderUseCase from '../../../src/UseCases/Order/finish/finish.usecase'
-import { IOrderGatewayRepository } from '../../../src/Gateways/contracts/IOrderGatewayRepository'
+import { describe, it, expect, vi, beforeEach } from 'vitest'
+import FinishOrderUseCase from '../../../src/UseCases/Order/updateStatus/updateStatus.usecase'
+import { IKitchenGatewayRepository } from '../../../src/Gateways/contracts/IKitchenGatewayRepository'
 import { isLeft, isRight, Left, Right } from '../../../src/@Shared/Either'
-import { InputFinishOrderDTO } from '../../../src/UseCases/Order/finish/finish.dto'
+import { InputUpdateStatusDTO } from '../../../src/UseCases/Order/updateStatus/updateStatus.dto'
 import Order from '../../../src/Entities/Order'
 import { StatusEnum } from '../../../src/Entities/Enums/StatusEnum'
 import StatusOrderException from '../../../src/@Shared/StatusOrderException'
 
 describe('FinishOrderUseCase', () => {
     let finishOrderUseCase: FinishOrderUseCase
-    let mockOrderRepository: Partial<IOrderGatewayRepository>
+    let mockOrderRepository: Partial<IKitchenGatewayRepository>
 
     beforeEach(() => {
         mockOrderRepository = {
@@ -18,7 +18,7 @@ describe('FinishOrderUseCase', () => {
         }
 
         finishOrderUseCase = new FinishOrderUseCase(
-            mockOrderRepository as IOrderGatewayRepository
+            mockOrderRepository as IKitchenGatewayRepository
         )
     })
 
@@ -29,7 +29,7 @@ describe('FinishOrderUseCase', () => {
             .fn()
             .mockResolvedValue(Left<Error>(new Error('Order not found')))
 
-        const input: InputFinishOrderDTO = { id: orderId }
+        const input: InputUpdateStatusDTO = { id: orderId }
         const result = await finishOrderUseCase.execute(input)
 
         expect(isLeft(result)).toBe(true)
@@ -46,7 +46,7 @@ describe('FinishOrderUseCase', () => {
         mockOrderRepository.get = vi.fn().mockResolvedValue(Right(mockOrder))
         mockOrderRepository.update = vi.fn().mockResolvedValue(Right('123'))
 
-        const input: InputFinishOrderDTO = { id: '123' }
+        const input: InputUpdateStatusDTO = { id: '123' }
 
         const result = await finishOrderUseCase.execute(input)
 
@@ -75,7 +75,7 @@ describe('FinishOrderUseCase', () => {
             .fn()
             .mockResolvedValue(Right(invalidStatusOrder))
 
-        const input: InputFinishOrderDTO = { id: '123' }
+        const input: InputUpdateStatusDTO = { id: '123' }
 
         await expect(finishOrderUseCase.execute(input)).rejects.toThrow(
             'Only orders with status Ready can be finished'
