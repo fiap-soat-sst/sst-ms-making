@@ -1,5 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm'
-import { StatusEnum } from '../../Entities/Enums/StatusEnum'
+import { StatusEnum } from '../../../Entities/Enums/StatusEnum'
 
 @Entity()
 export class Order {

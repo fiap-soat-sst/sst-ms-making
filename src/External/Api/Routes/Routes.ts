@@ -1,6 +1,6 @@
 import { Router } from 'express'
-import MakingController from '../../../Controllers/CookingAreaControlller'
-import OrderRepository from '../../Database/Repositories/DatabaseRepository/OrderRepository'
+import CookingAreaController from '../../../Controllers/CookingAreaController'
+import OrderRepository from '../../Database/Repositories/DatabaseRepository/CookingAreaRepository'
 import CreateOrderUseCase from '../../../UseCases/Order/create/create.usecase'
 import FindOrderByIdUseCase from '../../../UseCases/Order/findById/findById.usecase'
 import ListAllOrdersUseCase from '../../../UseCases/Order/listAll/listAll.usecase'
@@ -9,7 +9,7 @@ import { RouteTypeEnum } from '../../../Entities/Enums/RouteType'
 
 export default class CookingAreaRoutes {
     private readonly orderRepository: OrderRepository
-    private readonly cookingAreaControlller: MakingController
+    private readonly cookingAreaControlller: CookingAreaController
     private createOrderUseCase: CreateOrderUseCase
     private listAllOrdersUseCase: ListAllOrdersUseCase
     private findOrderByIdUseCase: FindOrderByIdUseCase
@@ -24,7 +24,7 @@ export default class CookingAreaRoutes {
             this.orderRepository
         )
         this.updateStatusUseCase = new UpdateStatusUseCase(this.orderRepository)
-        this.cookingAreaControlller = new MakingController(
+        this.cookingAreaControlller = new CookingAreaController(
             this.createOrderUseCase,
             this.listAllOrdersUseCase,
             this.findOrderByIdUseCase,

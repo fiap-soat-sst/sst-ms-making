@@ -1,12 +1,9 @@
-import { Either, isLeft, Left, Right } from '../../../@Shared/Either'
-import { StatusEnum } from '../../../Entities/Enums/StatusEnum'
-import { ICookingAreaGatewayRepository } from '../../../Gateways/contracts/ICookingAreaGatewayRepository'
+import { Either, isLeft, Right } from '../../../@Shared/Either'
+import IOrderRepository from '../../../External/Database/Repositories/Contracts/IOrderRepository'
 import { InputFindOrderByIdDTO, OutputFindOrderByIdDTO } from './findById.dto'
 
 export default class FindOrderByIdUseCase {
-    constructor(
-        private readonly orderRepository: ICookingAreaGatewayRepository
-    ) {}
+    constructor(private readonly orderRepository: IOrderRepository) {}
 
     async execute({
         id,

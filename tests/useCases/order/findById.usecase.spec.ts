@@ -1,13 +1,13 @@
 import { describe, it, beforeEach, expect, vi } from 'vitest'
 import FindOrderByIdUseCase from '../../../src/UseCases/Order/findById/findById.usecase'
-import { ICookingAreaGatewayRepository } from '../../../src/Gateways/contracts/ICookingAreaGatewayRepository'
 import Order from '../../../src/Entities/Order'
 import { InputFindOrderByIdDTO } from '../../../src/UseCases/Order/findById/findById.dto'
 import { isLeft, isRight, Left, Right } from '../../../src/@Shared/Either'
+import IOrderRepository from '../../../src/External/Database/Repositories/Contracts/IOrderRepository'
 
 describe('FindOrderByIdUseCase', () => {
     let findOrderByIdUseCase: FindOrderByIdUseCase
-    let mockOrderRepository: Partial<ICookingAreaGatewayRepository>
+    let mockOrderRepository: Partial<IOrderRepository>
 
     beforeEach(() => {
         mockOrderRepository = {
@@ -15,7 +15,7 @@ describe('FindOrderByIdUseCase', () => {
         }
 
         findOrderByIdUseCase = new FindOrderByIdUseCase(
-            mockOrderRepository as ICookingAreaGatewayRepository
+            mockOrderRepository as IOrderRepository
         )
     })
 

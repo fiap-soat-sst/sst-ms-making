@@ -1,4 +1,3 @@
-import Customer from '../../../Entities/Customer'
 import { CategoryEnum } from '../../../Entities/Enums/CategoryEnum'
 import { StatusEnum } from '../../../Entities/Enums/StatusEnum'
 
@@ -16,7 +15,7 @@ export interface OutputListOrdersDTO {
         quantity: number
         total: number
     }[]
-    customer: string | Customer
+    customer: string
     total: number
     closed: boolean
     status: StatusEnum

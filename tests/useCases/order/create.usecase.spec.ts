@@ -1,53 +1,20 @@
 import { describe, it, beforeEach, expect, vi } from 'vitest'
 import CreateOrderUseCase from '../../../src/UseCases/Order/create/create.usecase'
-import { Left, Right, isRight } from '../../../src/@Shared/Either'
-import { ICookingAreaGatewayRepository } from '../../../src/Gateways/contracts/ICookingAreaGatewayRepository'
+import { Right, isRight } from '../../../src/@Shared/Either'
 import { InputCreateOrderDTO } from '../../../src/UseCases/Order/create/create.dto'
-import { CategoryEnum } from '../../../src/Entities/Enums/CategoryEnum'
+import IOrderRepository from '../../../src/External/Database/Repositories/Contracts/IOrderRepository'
 
 describe('CreateOrderUseCase', () => {
     let createOrderUseCase: CreateOrderUseCase
-    let mockOrderRepository: Partial<ICookingAreaGatewayRepository>
+    let mockOrderRepository: Partial<IOrderRepository>
 
     beforeEach(() => {
         mockOrderRepository = {
             create: vi.fn().mockResolvedValue(Right('order-id')),
         }
 
-        mockCustomerRepository = {
-            findByCpf: vi
-                .fn()
-                .mockResolvedValue(
-                    Right(
-                        new Customer(
-                            'John Doe',
-                            '40418376000',
-                            'teste@email.com'
-                        )
-                    )
-                ),
-        }
-
-        mockProductRepository = {
-            findById: vi.fn().mockImplementation((id: string) => {
-                if (id === 'valid-product-id') {
-                    const mockProduct = new Product(
-                        id,
-                        'Hamburguer Classic',
-                        CategoryEnum.Sandwich,
-                        10,
-                        'Muito suculento'
-                    )
-                    mockProduct.getPrice = vi.fn().mockReturnValue(100)
-                    return Promise.resolve(Right(mockProduct))
-                } else {
-                    return Promise.resolve(Left(new Error('Product not found')))
-                }
-            }),
-        }
-
         createOrderUseCase = new CreateOrderUseCase(
-            mockOrderRepository as ICookingAreaGatewayRepository
+            mockOrderRepository as IOrderRepository
         )
     })
 
@@ -65,13 +32,6 @@ describe('CreateOrderUseCase', () => {
         if (isRight(result)) {
             expect(result.value).toBe('order-id')
         }
-
-        expect(mockCustomerRepository.findByCpf).toHaveBeenCalledWith(
-            '40418376000'
-        )
-        expect(mockProductRepository.findById).toHaveBeenCalledWith(
-            'valid-product-id'
-        )
         expect(mockOrderRepository.create).toHaveBeenCalled()
     })
 
@@ -85,10 +45,6 @@ describe('CreateOrderUseCase', () => {
         const result = await createOrderUseCase.execute(orderCustomer)
 
         expect(result).toEqual(Right('order-id'))
-        expect(mockCustomerRepository.findByCpf).not.toHaveBeenCalled()
-        expect(mockProductRepository.findById).toHaveBeenCalledWith(
-            'valid-product-id'
-        )
         expect(mockOrderRepository.create).toHaveBeenCalled()
     })
 

@@ -6,14 +6,14 @@ import { Order as model } from '../../Models/Order'
 import IOrderRepository from '../Contracts/IOrderRepository'
 import Order from '../../../../Entities/Order'
 
-export default class OrderRepository implements IOrderRepository {
+export default class CookingAreaRepository implements IOrderRepository {
     private repository: Repository<model>
 
     constructor() {
         this.repository = AppDataSource.getRepository(model)
     }
 
-    async create(order: Order): Promise<Either<Error, string>> {
+    async create(order: Order): Promise<Either<Error, Order>> {
         try {
             const customer = order.getCustomer()
             const orderModel = new model()
@@ -23,9 +23,9 @@ export default class OrderRepository implements IOrderRepository {
             orderModel.status = order.getStatus()
             orderModel.createdAt = order.getCreatedAt()
 
-            const orderSaved = await this.repository.save(orderModel)
+            await this.repository.save(orderModel)
 
-            return Right<string>(orderSaved.id)
+            return Right<Order>(order)
         } catch (error) {
             return Left<Error>(error as Error)
         }

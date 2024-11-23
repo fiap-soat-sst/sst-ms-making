@@ -1,15 +1,15 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import FinishOrderUseCase from '../../../src/UseCases/Order/updateStatus/updateStatus.usecase'
-import { ICookingAreaGatewayRepository } from '../../../src/Gateways/contracts/ICookingAreaGatewayRepository'
 import { isLeft, isRight, Left, Right } from '../../../src/@Shared/Either'
 import { InputUpdateStatusDTO } from '../../../src/UseCases/Order/updateStatus/updateStatus.dto'
 import Order from '../../../src/Entities/Order'
 import { StatusEnum } from '../../../src/Entities/Enums/StatusEnum'
 import StatusOrderException from '../../../src/@Shared/StatusOrderException'
+import IOrderRepository from '../../../src/External/Database/Repositories/Contracts/IOrderRepository'
 
 describe('FinishOrderUseCase', () => {
     let finishOrderUseCase: FinishOrderUseCase
-    let mockOrderRepository: Partial<ICookingAreaGatewayRepository>
+    let mockOrderRepository: Partial<IOrderRepository>
 
     beforeEach(() => {
         mockOrderRepository = {
@@ -18,7 +18,7 @@ describe('FinishOrderUseCase', () => {
         }
 
         finishOrderUseCase = new FinishOrderUseCase(
-            mockOrderRepository as ICookingAreaGatewayRepository
+            mockOrderRepository as IOrderRepository
         )
     })
 
