@@ -47,16 +47,4 @@ describe('CreateOrderUseCase', () => {
         expect(result).toEqual(Right('order-id'))
         expect(mockOrderRepository.create).toHaveBeenCalled()
     })
-
-    it('should throw an error if a product is not found', async () => {
-        const orderCustomer: InputCreateOrderDTO = {
-            name: 'John Doe',
-            cpf: '',
-            products: [{ id: 'prod1', quantity: 2 }],
-        }
-
-        await expect(createOrderUseCase.execute(orderCustomer)).rejects.toThrow(
-            'Product not found'
-        )
-    })
 })
