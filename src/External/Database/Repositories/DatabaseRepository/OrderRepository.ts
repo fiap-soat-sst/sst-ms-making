@@ -1,4 +1,4 @@
-import { In, Repository } from 'typeorm'
+import { Repository } from 'typeorm'
 import { AppDataSource } from '../../MySqlAdapter'
 import { Either, Right, Left } from '../../../../@Shared/Either'
 import { StatusEnum } from '../../../../Entities/Enums/StatusEnum'

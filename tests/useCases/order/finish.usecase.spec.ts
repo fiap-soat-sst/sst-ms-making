@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import FinishOrderUseCase from '../../../src/UseCases/Order/updateStatus/updateStatus.usecase'
-import { IKitchenGatewayRepository } from '../../../src/Gateways/contracts/IKitchenGatewayRepository'
+import { ICookingAreaGatewayRepository } from '../../../src/Gateways/contracts/ICookingAreaGatewayRepository'
 import { isLeft, isRight, Left, Right } from '../../../src/@Shared/Either'
 import { InputUpdateStatusDTO } from '../../../src/UseCases/Order/updateStatus/updateStatus.dto'
 import Order from '../../../src/Entities/Order'
@@ -9,7 +9,7 @@ import StatusOrderException from '../../../src/@Shared/StatusOrderException'
 
 describe('FinishOrderUseCase', () => {
     let finishOrderUseCase: FinishOrderUseCase
-    let mockOrderRepository: Partial<IKitchenGatewayRepository>
+    let mockOrderRepository: Partial<ICookingAreaGatewayRepository>
 
     beforeEach(() => {
         mockOrderRepository = {
@@ -18,7 +18,7 @@ describe('FinishOrderUseCase', () => {
         }
 
         finishOrderUseCase = new FinishOrderUseCase(
-            mockOrderRepository as IKitchenGatewayRepository
+            mockOrderRepository as ICookingAreaGatewayRepository
         )
     })
 

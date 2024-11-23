@@ -1,10 +1,12 @@
 import { Either, isLeft, isRight } from '../../../@Shared/Either'
 import Order from '../../../Entities/Order'
-import { IKitchenGatewayRepository } from '../../../Gateways/contracts/IKitchenGatewayRepository'
+import { ICookingAreaGatewayRepository } from '../../../Gateways/contracts/ICookingAreaGatewayRepository'
 import { InputCreateOrderDTO } from './create.dto'
 
 export default class CreateOrderUseCase {
-    constructor(private readonly orderRepository: IKitchenGatewayRepository) {}
+    constructor(
+        private readonly orderRepository: ICookingAreaGatewayRepository
+    ) {}
 
     async execute(
         orderCustomer: InputCreateOrderDTO

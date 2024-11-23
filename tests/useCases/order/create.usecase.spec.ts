@@ -1,19 +1,13 @@
 import { describe, it, beforeEach, expect, vi } from 'vitest'
 import CreateOrderUseCase from '../../../src/UseCases/Order/create/create.usecase'
 import { Left, Right, isRight } from '../../../src/@Shared/Either'
-import { ICustomerGatewayRepository } from '../../../src/Gateways/contracts/ICustomerGatewayRepository'
-import { IOrderGatewayRepository } from '../../../src/Gateways/contracts/IOrderGatewayRepository'
-import { IProductGatewayRepository } from '../../../src/Gateways/contracts/IProductGatewayRepository'
-import Customer from '../../../src/Entities/Customer'
+import { ICookingAreaGatewayRepository } from '../../../src/Gateways/contracts/ICookingAreaGatewayRepository'
 import { InputCreateOrderDTO } from '../../../src/UseCases/Order/create/create.dto'
 import { CategoryEnum } from '../../../src/Entities/Enums/CategoryEnum'
-import Product from '../../../src/Entities/Product'
 
 describe('CreateOrderUseCase', () => {
     let createOrderUseCase: CreateOrderUseCase
-    let mockOrderRepository: Partial<IOrderGatewayRepository>
-    let mockCustomerRepository: Partial<ICustomerGatewayRepository>
-    let mockProductRepository: Partial<IProductGatewayRepository>
+    let mockOrderRepository: Partial<ICookingAreaGatewayRepository>
 
     beforeEach(() => {
         mockOrderRepository = {
@@ -53,9 +47,7 @@ describe('CreateOrderUseCase', () => {
         }
 
         createOrderUseCase = new CreateOrderUseCase(
-            mockOrderRepository as IOrderGatewayRepository,
-            mockCustomerRepository as ICustomerGatewayRepository,
-            mockProductRepository as IProductGatewayRepository
+            mockOrderRepository as IOrderGatewayRepository
         )
     })
 

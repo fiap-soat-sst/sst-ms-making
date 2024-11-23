@@ -1,10 +1,12 @@
 import { Either, isLeft, Left, Right } from '../../../@Shared/Either'
 import { StatusEnum } from '../../../Entities/Enums/StatusEnum'
-import { IKitchenGatewayRepository } from '../../../Gateways/contracts/IKitchenGatewayRepository'
+import { ICookingAreaGatewayRepository } from '../../../Gateways/contracts/ICookingAreaGatewayRepository'
 import { InputUpdateStatusDTO } from './updateStatus.dto'
 
 export default class UpdateStatusUseCase {
-    constructor(private readonly orderRepository: IKitchenGatewayRepository) {}
+    constructor(
+        private readonly orderRepository: ICookingAreaGatewayRepository
+    ) {}
 
     async execute({
         id,
