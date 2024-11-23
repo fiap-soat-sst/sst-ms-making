@@ -3,7 +3,6 @@ import { Request, Response } from 'express'
 import CookingAreaController from '../../src/Controllers/CookingAreaController'
 import { Left, Right } from '../../src/@Shared/Either'
 import CreateOrderUseCase from '../../src/UseCases/Order/create/create.usecase'
-import ListOrdersUseCase from '../../src/UseCases/Order/list/list.usecase'
 import ListAllOrdersUseCase from '../../src/UseCases/Order/listAll/listAll.usecase'
 import FindOrderByIdUseCase from '../../src/UseCases/Order/findById/findById.usecase'
 import UpdateStatusUseCase from '../../src/UseCases/Order/updateStatus/updateStatus.usecase'
@@ -14,7 +13,6 @@ describe('OrderController', () => {
     let mockResponse: Partial<Response>
 
     let createOrderUseCase: Partial<CreateOrderUseCase>
-    let listOrdersUseCase: Partial<ListOrdersUseCase>
     let listAllOrdersUseCase: Partial<ListAllOrdersUseCase>
     let findOrderByIdUseCase: Partial<FindOrderByIdUseCase>
     let updateStatusUseCase: Partial<UpdateStatusUseCase>
