@@ -39,7 +39,7 @@ export default class MakingController {
             })
         }
     }
-    async listAllOrders(req: Request, res: Response): Promise<void> {
+    async listAllOrders(_req: Request, res: Response): Promise<void> {
         const result = await this.listAllOrdersUseCase.execute()
 
         if (isLeft(result)) {

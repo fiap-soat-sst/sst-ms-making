@@ -47,7 +47,7 @@ describe('CreateOrderUseCase', () => {
         }
 
         createOrderUseCase = new CreateOrderUseCase(
-            mockOrderRepository as IOrderGatewayRepository
+            mockOrderRepository as ICookingAreaGatewayRepository
         )
     })
 

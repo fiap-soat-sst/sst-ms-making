@@ -1,9 +1,11 @@
 import { Either, isLeft, Right } from '../../../@Shared/Either'
-import { IOrderGatewayRepository } from '../../../Gateways/contracts/IOrderGatewayRepository'
+import { ICookingAreaGatewayRepository } from '../../../Gateways/contracts/ICookingAreaGatewayRepository'
 import { OutputListOrdersDTO } from './list.dto'
 
 export default class ListOrdersUseCase {
-    constructor(private readonly orderRepository: IOrderGatewayRepository) {}
+    constructor(
+        private readonly orderRepository: ICookingAreaGatewayRepository
+    ) {}
 
     async execute(): Promise<Either<Error, OutputListOrdersDTO[]>> {
         const orders = await this.orderRepository.list()

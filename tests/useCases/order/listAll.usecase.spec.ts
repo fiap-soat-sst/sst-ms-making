@@ -1,13 +1,13 @@
 import { describe, it, expect, vi } from 'vitest'
 import Order from '../../../src/Entities/Order'
 import { StatusEnum } from '../../../src/Entities/Enums/StatusEnum'
-import { IOrderGatewayRepository } from '../../../src/Gateways/contracts/IOrderGatewayRepository'
+import { ICookingAreaGatewayRepository } from '../../../src/Gateways/contracts/ICookingAreaGatewayRepository'
 import ListAllOrdersUseCase from '../../../src/UseCases/Order/listAll/listAll.usecase'
 import { isLeft, isRight, Left, Right } from '../../../src/@Shared/Either'
 
 describe('ListAllOrdersUseCase', () => {
     let listAllOrdersUseCase: ListAllOrdersUseCase
-    let mockOrderRepository: Partial<IOrderGatewayRepository>
+    let mockOrderRepository: Partial<ICookingAreaGatewayRepository>
     let mockOrder: Order
 
     beforeEach(() => {
@@ -40,7 +40,7 @@ describe('ListAllOrdersUseCase', () => {
         }
 
         listAllOrdersUseCase = new ListAllOrdersUseCase(
-            mockOrderRepository as IOrderGatewayRepository
+            mockOrderRepository as ICookingAreaGatewayRepository
         )
     })
 
