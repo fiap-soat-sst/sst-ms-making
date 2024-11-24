@@ -1,16 +1,30 @@
 {
-  "name": "sst-ms-making",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "@types/express": "^5.0.0",
-    "express": "^4.21.1",
-    "typeorm": "^0.3.20"
-  }
+    "name": "sst-ms-making",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "build": "npx tsc",
+        "start": "node ./dist/src/External/Api/Server.js",
+        "test": "vitest --config vitest.config.mts --run",
+        "test:integration": "vitest --config vitest.config.mts --run",
+        "test:unit": "vitest --config vitest.config.mts --run",
+        "test:coverage": "vitest --config vitest.coverage.config.mts --run"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "@types/express": "^5.0.0",
+        "@vitest/coverage-v8": "^2.1.5",
+        "express": "^4.21.1",
+        "jsonwebtoken": "^9.0.2",
+        "swagger-ui-express": "^5.0.1",
+        "typeorm": "^0.3.20",
+        "typescript": "^5.6.3",
+        "vitest": "^2.1.5"
+    },
+    "devDependencies": {
+        "@types/jsonwebtoken": "^9.0.7",
+        "@types/swagger-ui-express": "^4.1.7"
+    }
 }
