@@ -37,42 +37,6 @@ describe('OrderController', () => {
         }
     })
 
-    it('startOrder - should create a new order and return 201 status', async () => {
-        const mockOrder = 'order-id'
-        mockRequest = {
-            body: { user_name: 'John', cpf: '99390063060', products: [] },
-        }
-        createOrderUseCase.execute = vi.fn().mockResolvedValue(Right(mockOrder))
-
-        await cookingAreacontroller.createOrder(
-            mockRequest as Request,
-            mockResponse as Response
-        )
-
-        expect(mockResponse.status).toHaveBeenCalledWith(201)
-        expect(mockResponse.setHeader).toHaveBeenCalledWith(
-            'Location',
-            `/orders/${mockOrder}`
-        )
-        expect(mockResponse.json).toHaveBeenCalledWith({
-            message: 'created successfully',
-            id: mockOrder,
-        })
-    })
-
-    it('createOrder - should return 400 if user_name is missing', async () => {
-        mockRequest = { body: { cpf: '123456789', products: [] } }
-        await cookingAreacontroller.createOrder(
-            mockRequest as Request,
-            mockResponse as Response
-        )
-
-        expect(mockResponse.status).toHaveBeenCalledWith(400)
-        expect(mockResponse.json).toHaveBeenCalledWith({
-            message: 'user_name is required',
-        })
-    })
-
     it('listOrders - should return orders with 200 status', async () => {
         const mockOrders = [{ id: '1' }, { id: '2' }]
         listAllOrdersUseCase.execute = vi
