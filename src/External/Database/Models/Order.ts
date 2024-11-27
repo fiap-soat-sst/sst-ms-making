@@ -15,7 +15,6 @@ export class Order {
 
     @Column({
         length: 60,
-        nullable: false,
         unique: false,
     })
     nameCustomer: string

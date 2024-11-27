@@ -8,7 +8,9 @@ let container: MySqlContainer = new MySqlContainer()
 let startedContainer: StartedMySqlContainer
 
 beforeAll(async () => {
+    console.log('///////////////////////////////////////////////////')
     startedContainer = await container.start()
+    console.log('///////////////////////////////////////////////////')
     console.log(startedContainer.getConnectionUri())
 
     return async () => {

@@ -17,7 +17,7 @@ const verifyAuthToken = new VerifyAuthToken(jwtSecret)
 
 const cookingAreaRoutes = new CookingAreaRoutes()
 
-// app.use('/api', authMiddleware(verifyAuthToken))
+app.use('/api', authMiddleware(verifyAuthToken))
 
 app.use(
     `/${RouteTypeEnum.PUBLIC}/docs`,

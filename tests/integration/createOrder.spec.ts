@@ -1,12 +1,12 @@
 import request from 'supertest'
-import { StatusEnum } from '../../src/Entities/Enums/StatusEnum'
 import { describe, it, expect } from 'vitest'
+import { StatusEnum } from '../../src/Entities/Enums/StatusEnum'
 import app from '../../src/External/Api/App'
 
 describe('Create Order', () => {
     it('should create an order successfully', async () => {
         const response = await request(app)
-            .post('/kitchen/order')
+            .post('/api/kitchen/protected/order')
             .send({
                 nameCustomer: 'John Doe',
                 cpf: '40418376000',
@@ -25,11 +25,13 @@ describe('Create Order', () => {
     })
 
     it('should return 400 if no products are provided', async () => {
-        const response = await request(app).post('/kitchen/order').send({
-            name: 'John Doe',
-            cpf: '123456789',
-            products: [],
-        })
+        const response = await request(app)
+            .post('/api/kitchen/protected/order')
+            .send({
+                name: 'John Doe',
+                cpf: '123456789',
+                products: [],
+            })
 
         expect(response.status).toBe(400)
         expect(response.body.message).toBe('Order without products')
