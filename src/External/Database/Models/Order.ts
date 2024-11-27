@@ -46,4 +46,11 @@ export class Order {
         nullable: false,
     })
     orderItems: string
+
+    @Column({
+        type: 'timestamp',
+        nullable: false,
+        default: () => 'CURRENT_TIMESTAMP',
+    })
+    updatedAt: Date
 }

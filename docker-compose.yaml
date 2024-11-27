@@ -3,7 +3,7 @@ services:
         build: .
         restart: on-failure
         ports:
-            - ${PORT}:${PORT}
+            - 3120:3120
         depends_on:
             mysql_self:
                 condition: service_healthy
@@ -29,6 +29,8 @@ services:
         ports:
             - ${PORT}:${PORT}
         depends_on:
+            init-app:
+                condition: service_started
             mysql_self:
                 condition: service_healthy
         networks:
@@ -46,7 +48,7 @@ services:
                 limits:
                     cpus: '1'
                     memory: 1GB
-        command: sh -c "npm start && npm run migration:up"
+        command: sh -c "npm start"
     mysql_self:
         image: mysql:5.7
         restart: on-failure

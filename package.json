@@ -8,8 +8,10 @@
         "start": "node ./dist/src/External/Api/Server.js",
         "dev": "nodemon -r dotenv/config ./dist/src/External/Api/Server.js",
         "test": "vitest --config vitest.config.mts --run",
-        "test:integration": "vitest --config vitest.config.mts --run",
-        "test:unit": "vitest --config vitest.config.mts --run",
+        "migration:up": "npx ts-node ./node_modules/.bin/typeorm migration:run -d ./src/External/Database/MySqlAdapter.ts",
+        "migration:down": "npx ts-node ./node_modules/.bin/typeorm migration:drop -d ./src/External/Database/MySqlAdapter.ts",
+        "test:integration": "vitest --config vitest.config.integ.mts --run integration",
+        "test:unit": "vitest --config vitest.config.mts --run unit",
         "test:coverage": "vitest --config vitest.coverage.config.mts --run"
     },
     "author": "",
@@ -17,16 +19,20 @@
     "dependencies": {
         "@types/express": "^5.0.0",
         "@vitest/coverage-v8": "^2.1.5",
+        "axios": "^1.7.8",
         "express": "^4.21.1",
         "jsonwebtoken": "^9.0.2",
         "mysql": "^2.18.1",
+        "supertest": "^7.0.0",
         "swagger-ui-express": "^5.0.1",
         "typeorm": "^0.3.20",
         "typescript": "^5.6.3",
         "vitest": "^2.1.5"
     },
     "devDependencies": {
+        "@testcontainers/mysql": "^10.15.0",
         "@types/jsonwebtoken": "^9.0.7",
+        "@types/supertest": "^6.0.2",
         "@types/swagger-ui-express": "^4.1.7",
         "nodemon": "^3.1.7"
     }

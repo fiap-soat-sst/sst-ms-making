@@ -35,26 +35,20 @@ export default class CookingAreaRoutes {
     buildRouter(): Router {
         const router = Router()
 
-        router.post('/', this.cookingAreaControlller.createOrder.bind(this))
-        router.get('/:id', this.cookingAreaControlller.getOrder.bind(this))
+        router.post(
+            '/order',
+            this.cookingAreaControlller.createOrder.bind(this)
+        )
         router.get(
-            `/${RouteTypeEnum.PROTECTED}`,
-            this.cookingAreaControlller.listAllOrders.bind(this)
+            '/order/:id',
+            this.cookingAreaControlller.getOrder.bind(this)
         )
         router.get(
             `/${RouteTypeEnum.PROTECTED}/list-all`,
             this.cookingAreaControlller.listAllOrders.bind(this)
         )
         router.put(
-            `/${RouteTypeEnum.PROTECTED}/prepare-order/:id`,
-            this.cookingAreaControlller.changeStatus.bind(this)
-        )
-        router.put(
-            `/${RouteTypeEnum.PROTECTED}/finish-prepare-order/:id`,
-            this.cookingAreaControlller.changeStatus.bind(this)
-        )
-        router.put(
-            `/${RouteTypeEnum.PROTECTED}/finish-order/:id`,
+            `/${RouteTypeEnum.PROTECTED}/order/update-status/:id`,
             this.cookingAreaControlller.changeStatus.bind(this)
         )
 

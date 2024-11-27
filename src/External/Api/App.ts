@@ -26,6 +26,6 @@ app.use(
         swaggerOptions: { url: `${process.env.SWAGGER_URL}` },
     })
 )
-app.use(getApiRoute('cookingArea'), cookingAreaRoutes.buildRouter())
+app.use(getApiRoute('kitchen'), cookingAreaRoutes.buildRouter())
 
 export default app
