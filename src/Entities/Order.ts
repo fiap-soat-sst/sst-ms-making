@@ -18,7 +18,7 @@ export default class Order {
         createdAt: Date = new Date()
     ) {
         this.id = id
-        this.items = []
+        this.items = JSON.parse('[]')
         this.customer = customer
         this.closed = false
         this.status = status
@@ -32,6 +32,10 @@ export default class Order {
 
     getItems(): any[] {
         return this.items
+    }
+
+    getItemsAsString(): string {
+        return JSON.stringify(this.items)
     }
 
     getCustomer(): string {

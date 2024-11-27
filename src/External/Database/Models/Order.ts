@@ -35,15 +35,15 @@ export class Order {
     status: StatusEnum
 
     @Column({
-        type: 'string',
-        nullable: true,
         length: 30,
+        nullable: true,
+        unique: false,
     })
     customer: string
 
     @Column({
-        type: 'array',
+        type: 'text',
         nullable: false,
     })
-    orderItems: any[]
+    orderItems: string
 }

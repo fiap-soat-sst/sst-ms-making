@@ -17,9 +17,8 @@ export default class CookingAreaRepository implements IOrderRepository {
         try {
             const customer = order.getCustomer()
             const orderModel = new model()
-            orderModel.orderItems = []
             orderModel.nameCustomer = customer
-            orderModel.orderItems = order.getItems()
+            orderModel.orderItems = order.getItemsAsString()
             orderModel.status = order.getStatus()
             orderModel.createdAt = order.getCreatedAt()
 
@@ -47,10 +46,9 @@ export default class CookingAreaRepository implements IOrderRepository {
                 return Left<Error>(new Error('Order not found'))
             }
 
-            orderToUpdate.orderItems = []
             orderToUpdate.status = orderJSON.status
             orderToUpdate.nameCustomer = order.getCustomer()
-            orderToUpdate.orderItems = order.getItems()
+            orderToUpdate.orderItems = order.getItemsAsString()
 
             const orderSaved = await this.repository.save(orderToUpdate)
 
