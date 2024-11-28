@@ -22,7 +22,7 @@ export default class CookingAreaRepository implements IOrderRepository {
             orderModel.status = order.getStatus()
             orderModel.createdAt = order.getCreatedAt()
 
-            await this.repository.save(orderModel)
+            const orderSaved = await this.repository.save(orderModel)
 
             return Right<Order>(order)
         } catch (error) {
@@ -46,10 +46,10 @@ export default class CookingAreaRepository implements IOrderRepository {
                 return Left<Error>(new Error('Order not found'))
             }
 
-            orderToUpdate.status = orderJSON.status
-            orderToUpdate.nameCustomer = order.getCustomer()
-            orderToUpdate.orderItems = order.getItemsAsString()
+            console.log('/////////////////////////', orderToUpdate)
+            orderToUpdate.status = orderJSON.status as StatusEnum
 
+            console.log('/////////////////////////', orderToUpdate)
             const orderSaved = await this.repository.save(orderToUpdate)
 
             return Right<string>(orderSaved.id)
@@ -64,7 +64,6 @@ export default class CookingAreaRepository implements IOrderRepository {
                 where: {
                     id,
                 },
-                relations: ['customer', 'orderItems', 'orderItems.product'],
             })
 
             if (!orderFind) {
@@ -85,9 +84,7 @@ export default class CookingAreaRepository implements IOrderRepository {
     }
     async getAll(): Promise<Either<Error, Order[]>> {
         try {
-            const ordersFind = await this.repository.find({
-                relations: ['customer', 'orderItems', 'orderItems.product'],
-            })
+            const ordersFind = await this.repository.find({})
 
             if (!ordersFind) {
                 return Left<Error>(new Error('Orders not found'))
@@ -111,9 +108,7 @@ export default class CookingAreaRepository implements IOrderRepository {
     }
     async list(): Promise<Either<Error, Order[]>> {
         try {
-            const ordersFind = await this.repository.find({
-                relations: ['customer', 'orderItems', 'orderItems.product'],
-            })
+            const ordersFind = await this.repository.find()
 
             if (!ordersFind) {
                 return Left<Error>(new Error('Orders not found'))

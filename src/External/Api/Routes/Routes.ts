@@ -17,6 +17,9 @@ export default class CookingAreaRoutes {
 
     constructor() {
         this.orderRepository = new OrderRepository()
+
+        this.createOrderUseCase = new CreateOrderUseCase(this.orderRepository)
+
         this.listAllOrdersUseCase = new ListAllOrdersUseCase(
             this.orderRepository
         )
@@ -24,6 +27,7 @@ export default class CookingAreaRoutes {
             this.orderRepository
         )
         this.updateStatusUseCase = new UpdateStatusUseCase(this.orderRepository)
+
         this.cookingAreaControlller = new CookingAreaController(
             this.createOrderUseCase,
             this.listAllOrdersUseCase,
@@ -48,7 +52,7 @@ export default class CookingAreaRoutes {
             this.cookingAreaControlller.listAllOrders.bind(this)
         )
         router.put(
-            `/${RouteTypeEnum.PROTECTED}/order/update-status/:id`,
+            `/${RouteTypeEnum.PROTECTED}/order/update-status/:id/:status`,
             this.cookingAreaControlller.changeStatus.bind(this)
         )
 

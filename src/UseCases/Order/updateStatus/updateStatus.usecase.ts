@@ -8,6 +8,7 @@ export default class UpdateStatusUseCase {
 
     async execute({
         id,
+        status,
     }: InputUpdateStatusDTO): Promise<Either<Error, string>> {
         const order = await this.orderRepository.get(id)
 
@@ -15,7 +16,7 @@ export default class UpdateStatusUseCase {
             return order
         }
 
-        order.value.updateStatus(StatusEnum.Finished)
+        order.value.updateStatus(status as StatusEnum)
         return this.orderRepository.update(order.value)
     }
 }

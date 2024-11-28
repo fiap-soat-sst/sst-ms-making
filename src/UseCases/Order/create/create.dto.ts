@@ -4,6 +4,8 @@ export interface InputCreateOrderDTO {
     products: [
         {
             id: string
+            name: string
+            category: string
             quantity: number
         }
     ]

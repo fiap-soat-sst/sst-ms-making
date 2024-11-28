@@ -17,10 +17,8 @@ export interface OutputFindOrderByIdDTO {
             description: string
         }
         quantity: number
-        total: number
     }[]
     customer: string
-    total: number
     closed: boolean
     status: StatusEnum
     createdAt: Date

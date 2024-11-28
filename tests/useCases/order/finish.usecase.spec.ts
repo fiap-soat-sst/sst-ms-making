@@ -29,7 +29,7 @@ describe('FinishOrderUseCase', () => {
             .fn()
             .mockResolvedValue(Left<Error>(new Error('Order not found')))
 
-        const input: InputUpdateStatusDTO = { id: orderId }
+        const input: InputUpdateStatusDTO = { id: orderId, status: 'Finished' }
         const result = await finishOrderUseCase.execute(input)
 
         expect(isLeft(result)).toBe(true)
@@ -46,7 +46,7 @@ describe('FinishOrderUseCase', () => {
         mockOrderRepository.get = vi.fn().mockResolvedValue(Right(mockOrder))
         mockOrderRepository.update = vi.fn().mockResolvedValue(Right('123'))
 
-        const input: InputUpdateStatusDTO = { id: '123' }
+        const input: InputUpdateStatusDTO = { id: '123', status: 'Finished' }
 
         const result = await finishOrderUseCase.execute(input)
 
@@ -75,7 +75,7 @@ describe('FinishOrderUseCase', () => {
             .fn()
             .mockResolvedValue(Right(invalidStatusOrder))
 
-        const input: InputUpdateStatusDTO = { id: '123' }
+        const input: InputUpdateStatusDTO = { id: '123', status: 'Finished' }
 
         await expect(finishOrderUseCase.execute(input)).rejects.toThrow(
             'Only orders with status Ready can be finished'

@@ -1,7 +1,16 @@
+import e from 'express'
 import InvalidCustomerException from '../@Shared/InvalidCustomerException'
 import OrderWithOutProductsException from '../@Shared/OrderWithOutProductsException'
 import StatusOrderException from '../@Shared/StatusOrderException'
 import { StatusEnum } from './Enums/StatusEnum'
+import { InputCreateOrderDTO } from '../UseCases/Order/create/create.dto'
+
+export interface items {
+    id: string
+    name: string
+    category: string
+    quantity: number
+}
 
 export default class Order {
     private id: string | null
@@ -15,14 +24,15 @@ export default class Order {
         customer: string,
         id: string | null = null,
         status: StatusEnum = StatusEnum.Received,
-        createdAt: Date = new Date()
+        createdAt: Date = new Date(),
+        items: items[] = []
     ) {
-        this.id = id
-        this.items = JSON.parse('[]')
         this.customer = customer
-        this.closed = false
+        this.id = id
         this.status = status
         this.createdAt = createdAt
+        this.items = items
+        this.closed = false
         this.validator()
     }
 
@@ -30,7 +40,7 @@ export default class Order {
         return this.id
     }
 
-    getItems(): any[] {
+    getItems(): items[] {
         return this.items
     }
 
@@ -48,13 +58,6 @@ export default class Order {
 
     getCreatedAt(): Date {
         return this.createdAt
-    }
-
-    getTotalOrderValue(): number {
-        return this.items.reduce(
-            (total, currentItem) => total + currentItem.getTotalValue(),
-            0
-        )
     }
 
     isClosed(): boolean {
@@ -115,7 +118,6 @@ export default class Order {
             id: this.id,
             items: this.items.map((item) => item.toJSON()),
             customer: this.customer,
-            total: this.getTotalOrderValue(),
             closed: this.closed,
             status: this.status,
             createdAt: this.createdAt,

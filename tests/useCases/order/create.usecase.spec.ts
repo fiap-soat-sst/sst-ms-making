@@ -22,7 +22,14 @@ describe('CreateOrderUseCase', () => {
         const input: InputCreateOrderDTO = {
             name: 'John Doe',
             cpf: '40418376000',
-            products: [{ id: 'valid-product-id', quantity: 2 }],
+            products: [
+                {
+                    id: 'valid-product-id',
+                    name: 'Product Name',
+                    category: 'Category',
+                    quantity: 2,
+                },
+            ],
         }
 
         const result = await createOrderUseCase.execute(input)
@@ -39,7 +46,14 @@ describe('CreateOrderUseCase', () => {
         const orderCustomer: InputCreateOrderDTO = {
             name: 'John Doe',
             cpf: '',
-            products: [{ id: 'valid-product-id', quantity: 2 }],
+            products: [
+                {
+                    id: 'valid-product-id',
+                    name: 'Product Name',
+                    category: 'Category',
+                    quantity: 2,
+                },
+            ],
         }
 
         const result = await createOrderUseCase.execute(orderCustomer)

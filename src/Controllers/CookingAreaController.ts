@@ -5,22 +5,22 @@ import UpdateStatusOrderUseCase from '../UseCases/Order/updateStatus/updateStatu
 import FindOrderByIdUseCase from '../UseCases/Order/findById/findById.usecase'
 import CreateOrderUseCase from '../UseCases/Order/create/create.usecase'
 
-export default class MakingController {
+export default class CookingAreaController {
     private createOrderUseCase: CreateOrderUseCase
     private listAllOrdersUseCase: ListAllOrdersUseCase
     private findOrderByIdUseCase: FindOrderByIdUseCase
-    private updatePrepareStatusUseCase: UpdateStatusOrderUseCase
+    private updateStatusUseCase: UpdateStatusOrderUseCase
 
     constructor(
         createOrderUseCase: CreateOrderUseCase,
         listAllOrdersUseCase: ListAllOrdersUseCase,
         findOrderByIdUseCase: FindOrderByIdUseCase,
-        updatePrepareStatusUseCase: UpdateStatusOrderUseCase
+        updateStatusUseCase: UpdateStatusOrderUseCase
     ) {
+        this.createOrderUseCase = createOrderUseCase
         this.listAllOrdersUseCase = listAllOrdersUseCase
         this.findOrderByIdUseCase = findOrderByIdUseCase
-        this.updatePrepareStatusUseCase = updatePrepareStatusUseCase
-        this.createOrderUseCase = createOrderUseCase
+        this.updateStatusUseCase = updateStatusUseCase
     }
 
     async createOrder(req: Request, res: Response): Promise<void> {
@@ -63,8 +63,11 @@ export default class MakingController {
     }
 
     async changeStatus(req: Request, res: Response): Promise<void> {
-        const { id } = req.params
-        const result = await this.updatePrepareStatusUseCase.execute({ id })
+        const { id, status } = req.params
+        const result = await this.updateStatusUseCase.execute({
+            id,
+            status,
+        })
 
         if (isLeft(result)) {
             res.status(400).json(result.value.message)
