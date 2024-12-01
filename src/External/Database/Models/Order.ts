@@ -21,15 +21,13 @@ export class Order {
     closed: boolean
 
     @Column({
-        type: 'enum',
-        enum: StatusEnum,
+        type: 'text',
         name: 'status',
     })
-    status: StatusEnum
+    status: string
 
     @Column({
         type: 'text',
-        length: 30,
         nullable: true,
         unique: false,
     })
