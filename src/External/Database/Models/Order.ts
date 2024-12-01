@@ -28,6 +28,7 @@ export class Order {
     status: StatusEnum
 
     @Column({
+        type: 'text',
         length: 30,
         nullable: true,
         unique: false,
