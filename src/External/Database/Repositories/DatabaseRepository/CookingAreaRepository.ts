@@ -46,10 +46,8 @@ export default class CookingAreaRepository implements IOrderRepository {
                 return Left<Error>(new Error('Order not found'))
             }
 
-            console.log('/////////////////////////', orderToUpdate)
             orderToUpdate.status = orderJSON.status as StatusEnum
 
-            console.log('/////////////////////////', orderToUpdate)
             const orderSaved = await this.repository.save(orderToUpdate)
 
             return Right<string>(orderSaved.id)
@@ -73,7 +71,7 @@ export default class CookingAreaRepository implements IOrderRepository {
             const order = new Order(
                 orderFind.customer,
                 orderFind.id,
-                orderFind.status,
+                orderFind.status as StatusEnum,
                 orderFind.createdAt
             )
 
@@ -94,7 +92,7 @@ export default class CookingAreaRepository implements IOrderRepository {
                 const orderEntity = new Order(
                     order.customer,
                     order.id,
-                    order.status,
+                    order.status as StatusEnum,
                     order.createdAt
                 )
 
@@ -118,7 +116,7 @@ export default class CookingAreaRepository implements IOrderRepository {
                 const orderEntity = new Order(
                     order.customer,
                     order.id,
-                    order.status,
+                    order.status as StatusEnum,
                     order.createdAt
                 )
 
