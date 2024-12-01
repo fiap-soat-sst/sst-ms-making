@@ -24,7 +24,15 @@ export default class CookingAreaRepository implements IOrderRepository {
 
             const orderSaved = await this.repository.save(orderModel)
 
-            return Right<Order>(order)
+            const orderEntity = new Order(
+                orderSaved.customer,
+                orderSaved.id,
+                orderSaved.status as StatusEnum,
+                orderSaved.createdAt,
+                JSON.parse(orderSaved.orderItems)
+            )
+
+            return Right<Order>(orderEntity)
         } catch (error) {
             return Left<Error>(error as Error)
         }
