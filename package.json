@@ -10,7 +10,7 @@
         "test": "vitest --config vitest.config.mts --run",
         "migration:up": "npx ts-node ./node_modules/.bin/typeorm migration:run -d ./src/External/Database/MySqlAdapter.ts",
         "migration:drop": "npx ts-node ./node_modules/.bin/typeorm migration:revert -d ./src/External/Database/MySqlAdapter.ts",
-        "test:integration": "vitest --config vitest.config.integ.mts --run integration",
+        "test:integration": "vitest --config vitest.config.mts --run",
         "test:unit": "vitest --config vitest.config.mts --run",
         "test:coverage": "vitest --config vitest.coverage.config.mts --run"
     },
