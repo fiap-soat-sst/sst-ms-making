@@ -114,7 +114,7 @@ export default class Order {
     toJSON() {
         return {
             id: this.id,
-            items: this.items.map((item) => item.toJSON()),
+            items: this.items,
             customer: this.customer,
             closed: this.closed,
             status: this.status,

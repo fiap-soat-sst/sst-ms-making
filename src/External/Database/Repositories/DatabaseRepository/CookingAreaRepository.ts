@@ -72,7 +72,8 @@ export default class CookingAreaRepository implements IOrderRepository {
                 orderFind.customer,
                 orderFind.id,
                 orderFind.status as StatusEnum,
-                orderFind.createdAt
+                orderFind.createdAt,
+                JSON.parse(orderFind.orderItems)
             )
 
             return Right<Order>(order)
@@ -93,7 +94,8 @@ export default class CookingAreaRepository implements IOrderRepository {
                     order.customer,
                     order.id,
                     order.status as StatusEnum,
-                    order.createdAt
+                    order.createdAt,
+                    JSON.parse(order.orderItems)
                 )
 
                 return orderEntity
@@ -117,7 +119,8 @@ export default class CookingAreaRepository implements IOrderRepository {
                     order.customer,
                     order.id,
                     order.status as StatusEnum,
-                    order.createdAt
+                    order.createdAt,
+                    JSON.parse(order.orderItems)
                 )
 
                 return orderEntity
