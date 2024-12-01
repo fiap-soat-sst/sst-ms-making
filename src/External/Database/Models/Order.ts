@@ -14,12 +14,6 @@ export class Order {
     createdAt: Date
 
     @Column({
-        length: 60,
-        unique: false,
-    })
-    nameCustomer: string
-
-    @Column({
         type: 'boolean',
         nullable: false,
         default: false,

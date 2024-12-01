@@ -17,7 +17,7 @@ export default class CookingAreaRepository implements IOrderRepository {
         try {
             const customer = order.getCustomer()
             const orderModel = new model()
-            orderModel.nameCustomer = customer
+            orderModel.customer = customer
             orderModel.orderItems = order.getItemsAsString()
             orderModel.status = order.getStatus()
             orderModel.createdAt = order.getCreatedAt()
@@ -71,7 +71,7 @@ export default class CookingAreaRepository implements IOrderRepository {
             }
 
             const order = new Order(
-                orderFind.nameCustomer,
+                orderFind.customer,
                 orderFind.id,
                 orderFind.status,
                 orderFind.createdAt
@@ -92,7 +92,7 @@ export default class CookingAreaRepository implements IOrderRepository {
 
             const orders = ordersFind.map((order) => {
                 const orderEntity = new Order(
-                    order.nameCustomer,
+                    order.customer,
                     order.id,
                     order.status,
                     order.createdAt
@@ -116,7 +116,7 @@ export default class CookingAreaRepository implements IOrderRepository {
 
             const orders = ordersFind.map((order) => {
                 const orderEntity = new Order(
-                    order.nameCustomer,
+                    order.customer,
                     order.id,
                     order.status,
                     order.createdAt
