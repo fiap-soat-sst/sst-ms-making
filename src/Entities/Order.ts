@@ -4,9 +4,7 @@ import StatusOrderException from '../@Shared/StatusOrderException'
 import { StatusEnum } from './Enums/StatusEnum'
 
 export interface items {
-    id: string
     name: string
-    category: string
     quantity: number
 }
 
