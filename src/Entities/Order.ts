@@ -1,9 +1,7 @@
-import e from 'express'
 import InvalidCustomerException from '../@Shared/InvalidCustomerException'
 import OrderWithOutProductsException from '../@Shared/OrderWithOutProductsException'
 import StatusOrderException from '../@Shared/StatusOrderException'
 import { StatusEnum } from './Enums/StatusEnum'
-import { InputCreateOrderDTO } from '../UseCases/Order/create/create.dto'
 
 export interface items {
     id: string
