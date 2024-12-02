@@ -68,8 +68,8 @@ jobs:
       
       - name: Update deployment main image
         run: |
-          kubectl set image deployment/sst-api --namespace=fiap-soat migrate=${{env.IMAGE_NAME}}:${{ github.event.release.tag_name }} sst-api=${{env.IMAGE_NAME}}:${{ github.event.release.tag_name }}
+          kubectl set image deployment/mking-api --namespace=fiap-soat migrate=${{env.IMAGE_NAME}}:${{ github.event.release.tag_name }} mking-api=${{env.IMAGE_NAME}}:${{ github.event.release.tag_name }}
 
       - name: restart deployment
         run: |
-          kubectl rollout restart deployment sst-api --namespace=fiap-soat
+          kubectl rollout restart deployment mking-api --namespace=fiap-soat
