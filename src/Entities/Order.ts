@@ -1,14 +1,10 @@
-import e from 'express'
 import InvalidCustomerException from '../@Shared/InvalidCustomerException'
 import OrderWithOutProductsException from '../@Shared/OrderWithOutProductsException'
 import StatusOrderException from '../@Shared/StatusOrderException'
 import { StatusEnum } from './Enums/StatusEnum'
-import { InputCreateOrderDTO } from '../UseCases/Order/create/create.dto'
 
 export interface items {
-    id: string
     name: string
-    category: string
     quantity: number
 }
 
@@ -116,7 +112,7 @@ export default class Order {
     toJSON() {
         return {
             id: this.id,
-            items: this.items.map((item) => item.toJSON()),
+            items: this.items,
             customer: this.customer,
             closed: this.closed,
             status: this.status,

@@ -17,14 +17,22 @@ export default class CookingAreaRepository implements IOrderRepository {
         try {
             const customer = order.getCustomer()
             const orderModel = new model()
-            orderModel.nameCustomer = customer
+            orderModel.customer = customer
             orderModel.orderItems = order.getItemsAsString()
             orderModel.status = order.getStatus()
             orderModel.createdAt = order.getCreatedAt()
 
             const orderSaved = await this.repository.save(orderModel)
 
-            return Right<Order>(order)
+            const orderEntity = new Order(
+                orderSaved.customer,
+                orderSaved.id,
+                orderSaved.status as StatusEnum,
+                orderSaved.createdAt,
+                JSON.parse(orderSaved.orderItems)
+            )
+
+            return Right<Order>(orderEntity)
         } catch (error) {
             return Left<Error>(error as Error)
         }
@@ -46,10 +54,8 @@ export default class CookingAreaRepository implements IOrderRepository {
                 return Left<Error>(new Error('Order not found'))
             }
 
-            console.log('/////////////////////////', orderToUpdate)
             orderToUpdate.status = orderJSON.status as StatusEnum
 
-            console.log('/////////////////////////', orderToUpdate)
             const orderSaved = await this.repository.save(orderToUpdate)
 
             return Right<string>(orderSaved.id)
@@ -71,10 +77,11 @@ export default class CookingAreaRepository implements IOrderRepository {
             }
 
             const order = new Order(
-                orderFind.nameCustomer,
+                orderFind.customer,
                 orderFind.id,
-                orderFind.status,
-                orderFind.createdAt
+                orderFind.status as StatusEnum,
+                orderFind.createdAt,
+                JSON.parse(orderFind.orderItems)
             )
 
             return Right<Order>(order)
@@ -92,10 +99,11 @@ export default class CookingAreaRepository implements IOrderRepository {
 
             const orders = ordersFind.map((order) => {
                 const orderEntity = new Order(
-                    order.nameCustomer,
+                    order.customer,
                     order.id,
-                    order.status,
-                    order.createdAt
+                    order.status as StatusEnum,
+                    order.createdAt,
+                    JSON.parse(order.orderItems)
                 )
 
                 return orderEntity
@@ -116,10 +124,11 @@ export default class CookingAreaRepository implements IOrderRepository {
 
             const orders = ordersFind.map((order) => {
                 const orderEntity = new Order(
-                    order.nameCustomer,
+                    order.customer,
                     order.id,
-                    order.status,
-                    order.createdAt
+                    order.status as StatusEnum,
+                    order.createdAt,
+                    JSON.parse(order.orderItems)
                 )
 
                 return orderEntity

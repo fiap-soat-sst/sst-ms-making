@@ -46,7 +46,7 @@ describe('FinishOrderUseCase', () => {
         mockOrderRepository.get = vi.fn().mockResolvedValue(Right(mockOrder))
         mockOrderRepository.update = vi.fn().mockResolvedValue(Right('123'))
 
-        const input: InputUpdateStatusDTO = { id: '123', status: 'Finished' }
+        const input: InputUpdateStatusDTO = { id: '123', status: 'Finalizado' }
 
         const result = await finishOrderUseCase.execute(input)
 

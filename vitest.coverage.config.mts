@@ -10,13 +10,7 @@ export default defineConfig({
             enabled: true,
             reporter: ['lcov', 'cobertura', 'text'],
             include: ['src/**/*.ts'],
-            exclude: [
-                '**/*.dto.ts',
-                '**/Gateways/*',
-                '**/Repositories/*',
-                '**/Migrations/*',
-                '**/External/Api/*',
-            ],
+            exclude: ['**/External/*'],
         },
     },
 })

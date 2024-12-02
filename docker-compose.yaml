@@ -1,6 +1,8 @@
 services:
     init-app:
-        build: .
+        build: 
+            context: .
+            dockerfile: Dockerfile.init-app
         restart: on-failure
         ports:
             - 3120:3120

@@ -14,12 +14,6 @@ export class Order {
     createdAt: Date
 
     @Column({
-        length: 60,
-        unique: false,
-    })
-    nameCustomer: string
-
-    @Column({
         type: 'boolean',
         nullable: false,
         default: false,
@@ -27,14 +21,13 @@ export class Order {
     closed: boolean
 
     @Column({
-        type: 'enum',
-        enum: StatusEnum,
+        type: 'text',
         name: 'status',
     })
-    status: StatusEnum
+    status: string
 
     @Column({
-        length: 30,
+        type: 'text',
         nullable: true,
         unique: false,
     })

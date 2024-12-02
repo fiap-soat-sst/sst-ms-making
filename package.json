@@ -10,7 +10,7 @@
         "test": "vitest --config vitest.config.mts --run",
         "migration:up": "npx ts-node ./node_modules/.bin/typeorm migration:run -d ./src/External/Database/MySqlAdapter.ts",
         "migration:drop": "npx ts-node ./node_modules/.bin/typeorm migration:revert -d ./src/External/Database/MySqlAdapter.ts",
-        "test:integration": "vitest --config vitest.config.integ.mts --run integration",
+        "test:integration": "vitest --config vitest.config.mts --run",
         "test:unit": "vitest --config vitest.config.mts --run",
         "test:coverage": "vitest --config vitest.coverage.config.mts --run"
     },
@@ -25,9 +25,9 @@
         "reflect-metadata": "^0.2.2",
         "supertest": "^7.0.0",
         "swagger-ui-express": "^5.0.1",
+        "ts-node": "^10.9.2",
         "typeorm": "^0.3.20",
-        "typescript": "^5.6.3",
-        "vitest": "^2.1.5"
+        "typescript": "^5.6.3"
     },
     "devDependencies": {
         "@testcontainers/mysql": "^10.15.0",
@@ -36,6 +36,8 @@
         "@types/supertest": "^6.0.2",
         "@types/swagger-ui-express": "^4.1.7",
         "@vitest/coverage-v8": "^2.1.6",
-        "nodemon": "^3.1.7"
+        "nodemon": "^3.1.7",
+        "vite": "^6.0.1",
+        "vitest": "^2.1.6"
     }
 }
