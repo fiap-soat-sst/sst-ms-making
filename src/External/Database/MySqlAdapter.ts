@@ -2,6 +2,8 @@ import "reflect-metadata";
 import { DataSource } from "typeorm";
 import { Order } from "./Models/Order";
 import { Order1732678294020 as orderMigration } from './migrations/1732678294020-order'
+import dotenv from 'dotenv'
+dotenv.config()
 
 export const AppDataSource = new DataSource({
     type: 'mysql',
