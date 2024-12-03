@@ -8,7 +8,7 @@
         "start": "node ./dist/src/External/Api/Server.js",
         "dev": "nodemon -r dotenv/config ./dist/src/External/Api/Server.js",
         "test": "vitest --config vitest.config.mts --run",
-        "migration:up": "npx ts-node ./node_modules/.bin/typeorm migration:run -d ./src/External/Database/MySqlAdapter.ts",
+        "migration:up": "npx typeorm migration:run -d ./src/External/Database/MySqlAdapter.ts",
         "migration:drop": "npx ts-node ./node_modules/.bin/typeorm migration:revert -d ./src/External/Database/MySqlAdapter.ts",
         "test:integration": "vitest --config vitest.config.mts --run",
         "test:unit": "vitest --config vitest.config.mts --run",
